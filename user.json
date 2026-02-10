@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1770623323615,
+    "name": "sachin",
+    "sec": "R",
+    "email": "SAchin@gamil.com"
+  },
+  {
+    "id": 1770623355814,
+    "name": "ram",
+    "sec": "R",
+    "email": "ram@gamil.com"
+  },
+  {
+    "id": 1770623370220,
+    "name": "vipul",
+    "sec": "R",
+    "email": "vipul@gamil.com"
+  },
+  {
+    "id": 1770624038742,
+    "name": "Rohit",
+    "sec": "R",
+    "email": "Rohit@gamil.com"
+  },
+  {
+    "id": 1770624538291,
+    "name": "Raj",
+    "sec": "R",
+    "email": "Raj@gamil.com"
+  }
+]
