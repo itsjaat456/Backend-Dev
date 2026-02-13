@@ -77,3 +77,30 @@ export function filtering(req,res){
         })
     }
 }
+
+export function searchByTitle(req,res){
+    const{title} = req.query;
+    try{
+        if(!fs.existsSync("book.json")){
+            return res.status(StatusCodes.NOT_FOUND.code).json({
+                code:StatusCodes.NOT_FOUND.code,
+                message:StatusCodes.NOT_FOUND.message,
+                data:null
+            })
+        }
+        let data = JSON.parse(fs.readFileSync("book.json","utf-8"));
+        let books = data.filter((value)=> value.title==title);
+        return res.status(StatusCodes.OK.code).json({
+            code:StatusCodes.OK.code,
+            message:StatusCodes.OK.message,
+            data:books
+        })
+    }catch(err){
+        console.log(err);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR.code).json({
+            code:StatusCodes.INTERNAL_SERVER_ERROR.code,
+            message:StatusCodes.INTERNAL_SERVER_ERROR.message,
+            data:null
+        })
+    }
+}
