@@ -1,0 +1,194 @@
+
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Payroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-weight: 600;
+        }
+
+        .actions-top {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-btn {
+            background: #fff;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .add-btn {
+            background: #82c91e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        thead {
+            background: #4c5a67;
+            color: white;
+        }
+
+        thead th {
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        tbody td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        .dept-badge {
+            background: #d3f9d8;
+            color: #2b8a3e;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .action-icons i {
+            margin-right: 10px;
+            cursor: pointer;
+            color: #495057;
+        }
+
+        .salary {
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>Employee Details</h2>
+
+        <div class="actions-top">
+            <form action="/user/emps" method="POST" style="display:flex; gap:10px;">
+    <input type="text" name="search" placeholder="Search by name" 
+           style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+    
+    <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i>
+    </button>
+</form>
+            
+
+            <a href="/user/addEmp">
+                <button class="add-btn">
+                    <i class="fas fa-plus"></i> Add User
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>DEPARTMENT</th>
+            <th>SALARY</th>
+            <th>JOINING DATE</th>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+
+       <tbody>
+  <% employees.forEach(emp => { %>
+    <tr>
+       <td>
+  <img src="<%= emp.image %>" alt="Profile Image" width="50" height="50" style="border-radius:50%; margin-right:10px;" />
+  <%= emp.firstName %> <%= emp.LastName %>
+</td>
+
+     
+      <td><%= emp.gender %></td>
+      <td>
+        <span class="dept-badge"><%= emp.department %></span>
+      </td>
+      <td class="salary">₹ <%= emp.salary %></td>
+      <td><%= emp.joining_date %></td>
+      <td class="action-icons">
+         <a href="/user/edit" >
+        <i class="fa fa-edit" >
+           
+        </i>
+           <i class="fa fa-trash" value=`${emp.id}` style="display: none;">   <%= emp.id %></i>
+    </a>
+<form action="/user/deletes/<%= emp.id %>" method="delete" style="display:inline;">
+    <button type="submit" class="delete-btn">
+        <i class="fa fa-trash"></i>
+    </button>
+</form>
+
+
+      </td>
+    </tr>
+  <% }) %>
+</tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

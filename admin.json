@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1771330583149,
+    "name": "ram",
+    "email": "ram@gmail.com",
+    "password": "$2b$10$1rfvsDDYJOYrwqPa7VvV7uoenPkLeQ7KGLrOJeOh17.nlkRBPOkmC"
+  },
+  {
+    "id": 1771566433238,
+    "name": "Mohan Sharma",
+    "email": "mohan@gmail.com",
+    "password": "$2b$10$5va3Ra/tvv6axrKQEKRIKO6yATJ3uGa16cBZf/hAh.gqZi83Zr5ju"
+  },
+  {
+    "id": 1771567415778,
+    "name": "jay",
+    "email": "jay@gmail.com",
+    "password": "$2b$10$cS2bTT4s2O2F7bKbRWyRG.lC5yEdpFppKSQ0/xIVI/7Uh1nmzKsMy"
+  },
+  {
+    "id": 1771571630373,
+    "name": "suryansh",
+    "email": "suryansh@gmail.com",
+    "password": "$2b$10$pVdDJcXl14tnax34BY2Gt.TazWN.ZPKW9bUu2ub0iAwviK4C0RrvG"
+  },
+  {
+    "id": 1771576513009,
+    "name": "mohit",
+    "email": "mohit@gmail.com",
+    "password": "$2b$10$HKEt/P4UCbEvHRBRh1yrU.Pkg.PKM0sv2pxU1xmnXzoiBjqaCHdMe"
+  },
+  {
+    "id": 1771580511111,
+    "name": "gaurav",
+    "email": "gaurav@gmail.com",
+    "password": "$2b$10$2cVFMZEodU4QK3UIN7s5QO7.QFFPKs4P9QHd8XEhuB1lyHnnaOe7K"
+  }
+]
