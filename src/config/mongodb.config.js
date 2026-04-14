@@ -13,7 +13,7 @@ mongoose.connect(url)
 .catch((err)=>{
     console.log("connection ",err);
 })
-
+    
 export default mongoose; 
 
 

@@ -21,6 +21,6 @@ function logger(type, message) {
 
          
     }
-}
+} 
 
 export default logger;
