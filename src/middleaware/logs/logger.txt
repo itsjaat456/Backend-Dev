@@ -4,4 +4,14 @@
 [4/14/2026, 3:19:33 PM] HTTP: POST /signup 400 - 15ms
 [4/14/2026, 3:19:43 PM] HTTP: POST /signup 201 - 78ms
   
-  
+  [4/14/2026, 4:24:41 PM] HTTP: GET /login 200 - 98ms
+[4/14/2026, 4:25:35 PM] HTTP: GET /login 200 - 94ms
+[4/14/2026, 4:27:18 PM] HTTP: GET /login 500 - 82ms
+[4/14/2026, 4:27:48 PM] HTTP: GET /login 200 - 108ms
+[4/14/2026, 4:29:54 PM] HTTP: GET /login 200 - 87ms
+[4/14/2026, 4:31:03 PM] HTTP: GET /login 200 - 88ms
+[4/14/2026, 4:36:29 PM] HTTP: GET /login 200 - 87ms
+[4/14/2026, 4:39:36 PM] HTTP: GET /otpLogin 401 - 5ms
+[4/14/2026, 4:40:34 PM] HTTP: GET /login 200 - 78ms
+[4/14/2026, 4:41:04 PM] HTTP: GET /otpLogin 401 - 0ms
+[4/14/2026, 4:41:25 PM] HTTP: GET /otpLogin 200 - 17ms
