@@ -12,6 +12,8 @@ const requestLogger = (req, res, next) => {
         logger("HTTP", logMessage);
     });
 
+
+     
     next();
 };
 

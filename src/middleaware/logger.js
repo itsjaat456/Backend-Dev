@@ -18,6 +18,8 @@ function logger(type, message) {
         fs.appendFileSync(loggerFile, log);
     } catch (error) {
         console.log("Logging Error:", error);
+
+         
     }
 }
 
