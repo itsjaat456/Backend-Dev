@@ -8,6 +8,7 @@ const url  = process.env.URL;
 mongoose.connect(url)
 .then(()=>{
     console.log("db connected");
+     
 })
 .catch((err)=>{
     console.log("connection ",err);
