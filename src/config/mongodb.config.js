@@ -14,7 +14,9 @@ mongoose.connect(url)
     console.log("connection ",err);
 })
 
-export default mongoose;
+export default mongoose; 
+
+
 
 
 
