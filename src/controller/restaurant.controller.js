@@ -70,11 +70,12 @@ export async function restaurantLogin(req,res){
                 data: null
             });
         }
+        let token = jwt.sign({id:restaurant._id},process.env.TOKEN,{expiresIn:"7h"});
 
         return res.status(StatusCodes.OK.code).json({
                 code: StatusCodes.OK.code,
                 message: "login successfully",
-                data: restaurant
+                data: {id:restaurant._id,token}
             });
 
     }catch (err) {

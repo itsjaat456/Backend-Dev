@@ -4,18 +4,19 @@ import {createRestorant, addMenu, restaurantLogin } from "../controller/restaura
 
 import {agentLogin, createAgent }from "../controller/agent.controller.js";
 import { createOrder } from "../controller/order.controller.js";
+import auth from "../auth/user.auth.js";
 
 const router = express.Router();
 
 router.post("/reg",createUser);
-router.get("/login",userLogin);
+router.get("/login",auth,userLogin);
 //agent
 router.post("/agentCreate",createAgent)
-router.get("/agentLogin",agentLogin);
+router.get("/agentLogin",auth,agentLogin);
 
 //restaurant 
 router.post("/restaurantSignup",createRestorant);
-router.get("/restaurantLogin",restaurantLogin);
+router.get("/restaurantLogin",auth,restaurantLogin);
 
  
 //order

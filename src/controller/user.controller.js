@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-pro-js";
 import User from "../models/usermodels.models.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken";
 
 export async function createUser(req,res){
     let{name,email,password,mob,dob,address} =req.body;
@@ -14,10 +15,18 @@ export async function createUser(req,res){
                 data:null
             })
          }
+         let checkRegix = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+         if(!checkRegix.test(password)){
+            return res.status(StatusCodes.BAD_REQUEST.code).json({
+                code:StatusCodes.BAD_REQUEST.code,
+                message:"password is weak",
+                data:null
+            })
+         }
         let pass = bcrypt.hashSync(password,10);
         password = pass;
-        let obj = new User ({name,email,password,mob,dob,address});
-        await obj.save()
+        let obj = {name,email,password,mob,dob,address};
+        await User.create(obj)
            return res.status(StatusCodes.CREATED.code).json({
                 code:StatusCodes.CREATED.code,
                 message:StatusCodes.CREATED.message,
@@ -59,11 +68,11 @@ export async function userLogin(req, res) {
                     data: null
                 });
             }
-
+            let token  = jwt.sign({id:user._id},process.env.TOKEN,{expiresIn:"7h"})
             return res.status(StatusCodes.OK.code).json({
                 code: StatusCodes.OK.code,
                 message: StatusCodes.OK.message,
-                data: { name: user.name }
+                data: { id:user._id,token }
             });
     } catch (err) {
         console.log("login error", err);

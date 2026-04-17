@@ -1,6 +1,7 @@
 import DeliveryAgent from "../models/agent.models.js";
 import { StatusCodes } from "http-status-pro-js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function createAgent(req, res) {
     const { name,email,password, phone ,vehicleNo} = req.body;
@@ -65,10 +66,11 @@ export async function agentLogin (req,res){
                 data: null
             });
        }
+       let token = jwt.sign({id:agent._id},process.env.TOKEN,{expiresIn:"7h"});
        return res.status(StatusCodes.OK.code).json({
                 code: StatusCodes.OK.code,
                 message: "agent login successfully",
-                data: agent
+                data: {id:agent._id,token}
             });
 
     }catch (err) {
