@@ -1,7 +1,7 @@
 import express from "express";
 import {createUser, userLogin } from "../controller/user.controller.js";
 import {createRestorant, addMenu, restaurantLogin } from "../controller/restaurant.controller.js";
-import { getNearbyRestaurants } from "../controller/nearRestaurant.controller.js";
+
 import {agentLogin, createAgent }from "../controller/agent.controller.js";
 import { createOrder } from "../controller/order.controller.js";
 
@@ -16,7 +16,7 @@ router.get("/agentLogin",agentLogin);
 //restaurant 
 router.post("/restaurantSignup",createRestorant);
 router.get("/restaurantLogin",restaurantLogin);
-router.get("/restaurants/nearby/:location",getNearbyRestaurants);
+
  
 //order
 router.post("/order",createOrder)
