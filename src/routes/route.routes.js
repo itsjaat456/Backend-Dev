@@ -9,14 +9,14 @@ import auth from "../auth/user.auth.js";
 const router = express.Router();
 
 router.post("/reg",createUser);
-router.get("/login",auth,userLogin);
+router.get("/login",userLogin);
 //agent
 router.post("/agentCreate",createAgent)
-router.get("/agentLogin",auth,agentLogin);
+router.get("/agentLogin",agentLogin);
 
 //restaurant 
 router.post("/restaurantSignup",createRestorant);
-router.get("/restaurantLogin",auth,restaurantLogin);
+router.get("/restaurantLogin",restaurantLogin);
 
  
 //order

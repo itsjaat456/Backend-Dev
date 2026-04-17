@@ -49,7 +49,7 @@ export async function userLogin(req, res) {
     try {
         const { email, password } = req.body;
 
-        const user = await User.findOne({ email: email }, { _id: 0, name: 1, password: 1 })
+        const user = await User.findOne({ email: email })
 
             if (!user) {
                 return res.status(StatusCodes.BAD_REQUEST.code).json({
