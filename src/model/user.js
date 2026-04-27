@@ -19,6 +19,12 @@ const  userSchema =new mongoose.Schema({
             ],
         required: true
     },
+    otp:{
+        type:String
+    },
+    otp_expiry:{
+        type:Date
+    }
 });
 
 // exporting model

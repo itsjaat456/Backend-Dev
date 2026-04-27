@@ -313,3 +313,102 @@ async function sendEmail(to,subject,text){
     }
 }
 
+export async function forgotPassword(req,res){
+
+    let {email} = req.body;
+
+    try{
+        let user = await User.findOne({email});
+
+        if(!user){
+            return res.status(StatusCodes.NOT_FOUND.code).json({
+                code:StatusCodes.NOT_FOUND.code,
+                message:"User not found",
+                data:null
+            })
+        }
+        let otp = Math.floor(100000 + Math.random() * 900000).toString();
+        let expiry = new Date(Date.now() + 5*60*1000); // 5 min
+        user.otp = otp;
+        user.otp_expiry = expiry;
+
+        await user.save();
+
+        await sendEmail(
+            email,
+            "==== OPT VERIFICATION SYSTEM ====",
+            `Your OTP for the PORTFOLIO is ${otp}`
+        );
+
+        return res.status(StatusCodes.OK.code).json({
+            code:StatusCodes.OK.code,
+            message:"OTP sent",
+            data:null
+        })
+
+    }catch(err){
+        console.log("forgot ",err);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR.code).json({
+            code:StatusCodes.INTERNAL_SERVER_ERROR.code,
+            message:StatusCodes.INTERNAL_SERVER_ERROR.message,
+            data:null
+        })
+    }
+}
+
+
+export async function verifyOtpAndReset(req,res){
+
+    let {email,otp,newPassword} = req.body;
+
+    try{
+
+        let user = await User.findOne({email});
+
+        if(!user){
+            return res.status(StatusCodes.NOT_FOUND.code).json({
+                code:StatusCodes.NOT_FOUND.code,
+                message:"User not found",
+                data:null
+            })
+        }
+
+        if(user.otp !== otp){
+            return res.status(StatusCodes.BAD_REQUEST.code).json({
+                code:StatusCodes.BAD_REQUEST.code,
+                message:"Invalid OTP",
+                data:null
+            })
+        }
+
+        if(new Date() > user.otp_expiry){
+            return res.status(StatusCodes.BAD_REQUEST.code).json({
+                code:StatusCodes.BAD_REQUEST.code,
+                message:"OTP expired",
+                data:null
+            })
+        }
+
+        let pass = bcrypt.hashSync(newPassword,10);
+
+        user.password = pass;
+        user.otp = null;
+        user.otp_expiry = null;
+
+        await user.save();
+
+        return res.status(StatusCodes.OK.code).json({
+            code:StatusCodes.OK.code,
+            message:"Password reset successful",
+            data:null
+        })
+
+    }catch(err){
+        console.log("otp reset ",err);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR.code).json({
+            code:StatusCodes.INTERNAL_SERVER_ERROR.code,
+            message:StatusCodes.INTERNAL_SERVER_ERROR.message,
+            data:null
+        })
+    }
+}
