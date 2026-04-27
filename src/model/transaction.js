@@ -1,4 +1,4 @@
-import mongoose from "../config/connection.db";
+import mongoose from "../config/connection.db.js";
 
 const transactionSchema = new mongoose.Schema({
     user_id:{
